@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
 
-export enum Actions {
+enum Actions {
   Edit = 'EDIT',
   Inspiration = 'INSPIRATION',
   AddResources = 'ADD_RESOURCES',
@@ -18,7 +18,7 @@ enum ModalType {
 }
 
 type Modal = {
-  modal?: ModalType;
+  type?: ModalType;
   views?: ModalType[];
 };
 
@@ -96,7 +96,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const isDevelopmentsOpen = modal === ModalType.Developments;
 
   const showDevelopments = () => {
-    dispatch(Actions.Edit);
+    dispatch(Actions.Developments);
   };
 
   const resetModal = () => {

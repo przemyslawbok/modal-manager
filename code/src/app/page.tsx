@@ -1,10 +1,11 @@
 'use client';
-import { Modals } from './components/modals';
+
+import { ModalManager } from './components/modal-manager';
 
 export default function Home() {
   return (
     <main>
-      <Modals />
+      <ModalManager />
     </main>
   );
 }

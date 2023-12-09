@@ -5,7 +5,7 @@ import {
   DevelopmentsModal,
   EditModal,
   InspirationModal,
-} from './modal-variants';
+} from './modals';
 import { ModalProvider } from '@/app/use-modal/use-modal.context';
 import {
   EditButton,
@@ -13,7 +13,7 @@ import {
   ShowInspirationButton,
 } from './buttons';
 
-export const Modals: FC = () => {
+export const ModalManager: FC = () => {
   return (
     <ModalProvider>
       <EditButton />

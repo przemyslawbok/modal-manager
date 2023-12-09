@@ -7,8 +7,8 @@ import {
   CenteredModal,
   Title,
 } from './modal.styled';
-import { BackButton } from '@/app/components/back-button';
-import { CloseButton } from '../../close-button/close-button';
+import { BackButton } from '@/app/components/common/back-button';
+import { CloseButton } from '@/app/components/common/close-button';
 
 type ModalProps = {
   buttonText: string;
