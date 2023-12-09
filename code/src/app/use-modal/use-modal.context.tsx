@@ -22,8 +22,16 @@ interface ModalState {
 }
 
 interface ModalContextProps {
-  isEditModalOpen: boolean;
-  showEditModal: () => void;
+  isEditOpen: boolean;
+  isInspirationOpen: boolean;
+  isAddResourcesOpen: boolean;
+  isAddMoodboardsOpen: boolean;
+  isDevelopmentsOpen: boolean;
+  showEdit: () => void;
+  showInspiration: () => void;
+  showAddResources: () => void;
+  showAddMoodboards: () => void;
+  showDevelopments: () => void;
   resetModal: () => void;
 }
 
@@ -56,9 +64,33 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {});
   const { modal } = state;
 
-  const isEditModalOpen = modal === ModalType.Edit;
+  const isEditOpen = modal === ModalType.Edit;
 
-  const showEditModal = () => {
+  const showEdit = () => {
+    dispatch(Actions.Edit);
+  };
+
+  const isInspirationOpen = modal === ModalType.Inspiration;
+
+  const showInspiration = () => {
+    dispatch(Actions.Inspiration);
+  };
+
+  const isAddResourcesOpen = modal === ModalType.AddResources;
+
+  const showAddResources = () => {
+    dispatch(Actions.AddResources);
+  };
+
+  const isAddMoodboardsOpen = modal === ModalType.AddMoodboards;
+
+  const showAddMoodboards = () => {
+    dispatch(Actions.AddMoodboards);
+  };
+
+  const isDevelopmentsOpen = modal === ModalType.Developments;
+
+  const showDevelopments = () => {
     dispatch(Actions.Edit);
   };
 
@@ -67,8 +99,16 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   };
 
   const provider = {
-    isEditModalOpen,
-    showEditModal,
+    isEditOpen,
+    isInspirationOpen,
+    isAddResourcesOpen,
+    isAddMoodboardsOpen,
+    isDevelopmentsOpen,
+    showEdit,
+    showInspiration,
+    showAddResources,
+    showAddMoodboards,
+    showDevelopments,
     resetModal,
   };
 
