@@ -1,18 +1,23 @@
 import { useModalContext } from '@/app/use-modal/use-modal.context';
 import { FC } from 'react';
 import { Modal } from '@/app/components/modals/modal';
+import {
+  AddMoodboardsButton,
+  AddResourcesButton,
+} from '@/app/components/modals/buttons';
 
 export const InspirationModal: FC = () => {
-  const { isInspirationOpen, showInspiration } = useModalContext();
+  const { isInspirationOpen } = useModalContext();
 
   return (
     <Modal
       buttonText='Open inspiration modal'
       title='Inspiration modal'
       isOpen={isInspirationOpen}
-      onShowClick={showInspiration}
     >
       Inspiration modal
+      <AddMoodboardsButton />
+      <AddResourcesButton />
     </Modal>
   );
 };

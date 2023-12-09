@@ -3,14 +3,13 @@ import { FC } from 'react';
 import { Modal } from '@/app/components/modals/modal';
 
 export const DevelopmentsModal: FC = () => {
-  const { isDevelopmentsOpen, showDevelopments } = useModalContext();
+  const { isDevelopmentsOpen } = useModalContext();
 
   return (
     <Modal
       buttonText='Open Developments modal'
       title='Developments modal'
       isOpen={isDevelopmentsOpen}
-      onShowClick={showDevelopments}
     >
       Developments modal
     </Modal>

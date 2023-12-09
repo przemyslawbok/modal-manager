@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, useReducer, ReactNode } from 'react';
+import React, { createContext, useReducer, ReactNode } from 'react';
 
 export enum Actions {
   Edit = 'EDIT',
@@ -16,6 +16,11 @@ enum ModalType {
   AddMoodboards,
   Developments,
 }
+
+type Modal = {
+  modal?: ModalType;
+  views?: ModalType[];
+};
 
 interface ModalState {
   modal?: ModalType;
