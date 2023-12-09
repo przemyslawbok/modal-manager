@@ -5,13 +5,14 @@ import {
   AddMoodboardsButton,
   AddResourcesButton,
 } from '@/app/components/modal-manager/buttons';
+import { ModalVariant } from '@/app/use-modal/data';
 
 export const InspirationModal: FC = () => {
   const { isInspirationOpen } = useModalContext();
 
   return (
     <Modal
-      buttonText='Open inspiration modal'
+      variant={ModalVariant.Right}
       title='Inspiration modal'
       isOpen={isInspirationOpen}
     >

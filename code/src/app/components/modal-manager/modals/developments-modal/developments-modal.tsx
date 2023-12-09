@@ -1,4 +1,5 @@
 import { Modal } from '@/app/components/common/modal';
+import { ModalVariant } from '@/app/use-modal/data';
 import { useModalContext } from '@/app/use-modal/use-modal.context';
 import { FC } from 'react';
 
@@ -7,7 +8,7 @@ export const DevelopmentsModal: FC = () => {
 
   return (
     <Modal
-      buttonText='Open Developments modal'
+      variant={ModalVariant.Bottom}
       title='Developments modal'
       isOpen={isDevelopmentsOpen}
     >

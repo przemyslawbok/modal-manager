@@ -1,17 +1,12 @@
-import { useModalContext } from '@/app/use-modal/use-modal.context';
 import { FC, ReactNode } from 'react';
-import {
-  Header,
-  CenteredModalBox,
-  StyledContentBox,
-  CenteredModal,
-  Title,
-} from './modal.styled';
+import { Header, StyledContentBox, Title } from './modal.styled';
 import { BackButton } from '@/app/components/common/back-button';
 import { CloseButton } from '@/app/components/common/close-button';
+import { ModalPicker } from './modal-picker';
+import { ModalVariant } from '@/app/use-modal/data';
 
 type ModalProps = {
-  buttonText: string;
+  variant: ModalVariant;
   title: string;
   isOpen: boolean;
   onBackClick?: () => void;
@@ -19,27 +14,18 @@ type ModalProps = {
 };
 
 export const Modal: FC<ModalProps> = (props) => {
-  const { title, isOpen, onBackClick, children } = props;
-  const { resetModal } = useModalContext();
+  const { variant, title, isOpen, onBackClick, children } = props;
 
   return (
-    <CenteredModal
-      open={isOpen}
-      onClose={resetModal}
-      hideBackdrop
-      aria-labelledby='modal-modal-title'
-      aria-describedby='modal-modal-description'
-    >
-      <CenteredModalBox>
-        <Header>
-          {onBackClick && <BackButton onClick={onBackClick} />}
-          <Title id='modal-modal-title' variant='h6'>
-            {title}
-          </Title>
-          <CloseButton />
-        </Header>
-        <StyledContentBox>{children}</StyledContentBox>
-      </CenteredModalBox>
-    </CenteredModal>
+    <ModalPicker variant={variant} isOpen={isOpen}>
+      <Header>
+        {onBackClick && <BackButton onClick={onBackClick} />}
+        <Title id='modal-modal-title' variant='h6'>
+          {title}
+        </Title>
+        <CloseButton />
+      </Header>
+      <StyledContentBox>{children}</StyledContentBox>
+    </ModalPicker>
   );
 };
