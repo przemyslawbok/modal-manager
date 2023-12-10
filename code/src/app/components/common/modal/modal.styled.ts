@@ -1,5 +1,17 @@
+import { ModalVariant } from '@/app/use-modal/data';
 import styled from '@emotion/styled'
-import { Box, Typography } from '@mui/material'
+import { Box, Modal, Typography } from '@mui/material'
+
+interface StyledModalProps {
+  variant?: ModalVariant;
+}
+
+export const StyledModal = styled(Modal)<StyledModalProps>`
+  display: flex;
+  align-items: ${({variant}) => variant === ModalVariant.Bottom ? "flex-end" : "center" };
+  justify-content: ${({variant}) => variant === ModalVariant.Right ? "flex-end" : "center" };
+  ${({variant}) => variant === ModalVariant.Right ? "padding-top: 24px" : null };
+`
 
 export const Header = styled(Box)`
   display: flex;

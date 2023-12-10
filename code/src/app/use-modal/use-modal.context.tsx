@@ -1,5 +1,11 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
-import { ModalParams, ModalType, ModalVariant } from './data';
+import {
+  InspirationViews,
+  ModalParams,
+  ModalType,
+  ModalVariant,
+  ViewParams,
+} from './data';
 import { getParamsObject } from './utils/get-params-object';
 
 interface ModalState {
@@ -8,17 +14,17 @@ interface ModalState {
 
 interface ModalContextProps {
   modalVariant?: ModalVariant;
+  modalViews?: ViewParams[];
+  currentView?: string;
   isEditOpen: boolean;
   isInspirationOpen: boolean;
-  isAddResourcesOpen: boolean;
-  isAddMoodboardsOpen: boolean;
   isDevelopmentsOpen: boolean;
   showEdit: () => void;
   showInspiration: () => void;
-  showAddResources: () => void;
-  showAddMoodboards: () => void;
   showDevelopments: () => void;
   resetModal: () => void;
+  showAddResources: () => void;
+  showAddMoodboards: () => void;
 }
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
@@ -28,44 +34,66 @@ const reducer = (state: ModalState, params: ModalParams): ModalState => {
 };
 
 interface ModalProviderProps {
-  config: ModalParams[];
+  configs: ModalParams[];
   children: ReactNode;
 }
 
-const ModalProvider: React.FC<ModalProviderProps> = ({ config, children }) => {
+const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
   const [state, dispatch] = useReducer(reducer, {
     modal: {},
   });
-  const { type, variant } = state.modal;
+  const { type, variant, currentView, views } = state.modal;
 
   const isEditOpen = type === ModalType.Edit;
 
   const showEdit = () => {
-    dispatch(getParamsObject(ModalType.Edit, config));
+    dispatch(getParamsObject(ModalType.Edit, configs));
   };
 
   const isInspirationOpen = type === ModalType.Inspiration;
 
   const showInspiration = () => {
-    dispatch(getParamsObject(ModalType.Inspiration, config));
-  };
-
-  const isAddResourcesOpen = type === ModalType.AddResources;
-
-  const showAddResources = () => {
-    dispatch(getParamsObject(ModalType.AddResources, config));
-  };
-
-  const isAddMoodboardsOpen = type === ModalType.AddMoodboards;
-
-  const showAddMoodboards = () => {
-    dispatch(getParamsObject(ModalType.AddMoodboards, config));
+    dispatch(
+      getParamsObject(
+        ModalType.Inspiration,
+        configs,
+        InspirationViews.Inspiration
+      )
+    );
   };
 
   const isDevelopmentsOpen = type === ModalType.Developments;
 
   const showDevelopments = () => {
-    dispatch(getParamsObject(ModalType.Developments, config));
+    dispatch(getParamsObject(ModalType.Developments, configs));
+  };
+
+  const showAddResources = () => {
+    dispatch(
+      getParamsObject(
+        ModalType.Inspiration,
+        configs,
+        InspirationViews.AddResources
+      )
+    );
+  };
+
+  const showAddMoodboards = () => {
+    dispatch(
+      getParamsObject(
+        ModalType.Inspiration,
+        configs,
+        InspirationViews.AddMoodboards
+      )
+    );
+  };
+
+  const getCurrentView = () => {
+    //TODO: add error handling when set parameters are not in config
+    const config = configs.find((config) => config.type === type);
+    const view = config?.views?.find((view) => view.view === currentView);
+
+    return view?.view;
   };
 
   const resetModal = () => {
@@ -74,17 +102,17 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ config, children }) => {
 
   const provider = {
     modalVariant: variant,
+    modalViews: views,
+    currentView: getCurrentView(),
     isEditOpen,
     isInspirationOpen,
-    isAddResourcesOpen,
-    isAddMoodboardsOpen,
     isDevelopmentsOpen,
     showEdit,
     showInspiration,
-    showAddResources,
-    showAddMoodboards,
     showDevelopments,
     resetModal,
+    showAddResources,
+    showAddMoodboards,
   };
 
   return (
