@@ -6,11 +6,11 @@ import {
   ShowInspirationButton,
 } from './buttons';
 import { ModalProvider } from '@/contexts/use-modal';
-import { PAGE_CONFIG } from '@/contexts/use-modal/configs/pageConfig';
+import { HOME_PAGE_CONFIG } from '@/configs/pageConfig';
 
 export const ModalManager: FC = () => {
   return (
-    <ModalProvider configs={PAGE_CONFIG}>
+    <ModalProvider configs={HOME_PAGE_CONFIG}>
       <EditButton />
       <ShowInspirationButton />
       <ShowDevelopmentsButton />

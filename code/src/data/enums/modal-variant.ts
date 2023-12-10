@@ -1,5 +1,5 @@
 export enum ModalVariant {
-  Centered,
-  Right,
-  Bottom
+  Centered = "CENTERED",
+  Right = "RIGHT",
+  Bottom = "BOTTOM"
 }

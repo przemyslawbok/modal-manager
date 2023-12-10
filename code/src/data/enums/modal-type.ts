@@ -1,5 +1,5 @@
 export enum ModalType {
-  Edit,
-  Inspiration,
-  Developments,
+  Edit = "EDIT",
+  Inspiration = "INSPIRATION",
+  Developments = "DEVELOPMENTS",
 }

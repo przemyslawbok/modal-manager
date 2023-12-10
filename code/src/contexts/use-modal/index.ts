@@ -1,3 +1,3 @@
-import { ModalProvider, useModalContext } from './use-modal.context'
+import { ModalProvider, useModalContext } from './use-modal-context'
 
 export { ModalProvider, useModalContext };

@@ -2,10 +2,7 @@ import React, { createContext, useReducer, ReactNode } from 'react';
 import { getParamsObject } from './utils/get-params-object';
 import { InspirationView, ModalType, ModalVariant } from '@/data/enums';
 import { Modal, View } from '@/data/modal';
-
-interface ModalState {
-  modal: Modal;
-}
+import { reducer } from './utils/reducer';
 
 interface ModalContextProps {
   title?: string;
@@ -24,10 +21,6 @@ interface ModalContextProps {
 }
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
-
-const reducer = (state: ModalState, params: Modal): ModalState => {
-  return { ...state, modal: { ...params } };
-};
 
 interface ModalProviderProps {
   configs: Modal[];
