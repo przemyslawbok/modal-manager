@@ -1,9 +1,12 @@
 import { Modal } from '@/app/components/common/modal';
+import { InspirationViews } from '@/app/use-modal/data';
 import { useModalContext } from '@/app/use-modal/use-modal.context';
 import { FC } from 'react';
 
-export const AddMoodboardsModal: FC = () => {
-  const { isAddMoodboardsOpen, showInspiration } = useModalContext();
+export const AddMoodboardsView: FC = () => {
+  const { currentView, showInspiration } = useModalContext();
+
+  const isAddMoodboardsOpen = currentView === InspirationViews.AddMoodboards;
 
   return (
     <Modal
