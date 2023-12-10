@@ -1,11 +1,11 @@
-import { ModalVariant } from '@/app/use-modal/data';
 import { FC, ReactNode } from 'react';
 import {
   BottomModalBox,
   CenteredModalBox,
   RightModalBox,
 } from './modal-picker.styled';
-import { useModalContext } from '@/app/use-modal';
+import { useModalContext } from '@/contexts/use-modal';
+import { ModalVariant } from '@/data/enums';
 
 type ModalPickerProps = {
   children: ReactNode;

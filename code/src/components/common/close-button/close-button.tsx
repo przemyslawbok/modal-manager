@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import { IconButton } from '@mui/material';
-import { useModalContext } from '@/app/use-modal/use-modal.context';
+import { useModalContext } from '@/contexts/use-modal';
 
 export const CloseButton: FC = () => {
   const { resetModal } = useModalContext();

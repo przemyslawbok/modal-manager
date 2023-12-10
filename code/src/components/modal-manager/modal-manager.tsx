@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { DevelopmentsModal, EditModal, InspirationModal } from './modals';
-import { ModalProvider } from '@/app/use-modal/use-modal.context';
 import {
   EditButton,
   ShowDevelopmentsButton,
   ShowInspirationButton,
 } from './buttons';
-import { PAGE_CONFIG } from '@/app/use-modal/configs/pageConfig';
+import { ModalProvider } from '@/contexts/use-modal';
+import { PAGE_CONFIG } from '@/contexts/use-modal/configs/pageConfig';
 
 export const ModalManager: FC = () => {
   return (

@@ -1,21 +1,16 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
-import {
-  InspirationViews,
-  ModalParams,
-  ModalType,
-  ModalVariant,
-  ViewParams,
-} from './data';
 import { getParamsObject } from './utils/get-params-object';
+import { InspirationView, ModalType, ModalVariant } from '@/data/enums';
+import { Modal, View } from '@/data/modal';
 
 interface ModalState {
-  modal: ModalParams;
+  modal: Modal;
 }
 
 interface ModalContextProps {
   title?: string;
   modalVariant?: ModalVariant;
-  modalViews?: ViewParams[];
+  modalViews?: View[];
   currentView?: string;
   isEditOpen: boolean;
   isInspirationOpen: boolean;
@@ -30,12 +25,12 @@ interface ModalContextProps {
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
-const reducer = (state: ModalState, params: ModalParams): ModalState => {
+const reducer = (state: ModalState, params: Modal): ModalState => {
   return { ...state, modal: { ...params } };
 };
 
 interface ModalProviderProps {
-  configs: ModalParams[];
+  configs: Modal[];
   children: ReactNode;
 }
 
@@ -58,7 +53,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
-        InspirationViews.Inspiration
+        InspirationView.Inspiration
       )
     );
   };
@@ -74,7 +69,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
-        InspirationViews.AddResources
+        InspirationView.AddResources
       )
     );
   };
@@ -84,7 +79,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
-        InspirationViews.AddMoodboards
+        InspirationView.AddMoodboards
       )
     );
   };

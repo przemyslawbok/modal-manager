@@ -2,7 +2,7 @@
 
 import { ModalManager } from '@/components/modal-manager';
 
-export default function Home() {
+export default function RestrictedPage() {
   return (
     <main>
       <ModalManager />
