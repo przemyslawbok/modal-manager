@@ -13,6 +13,7 @@ interface ModalState {
 }
 
 interface ModalContextProps {
+  title?: string;
   modalVariant?: ModalVariant;
   modalViews?: ViewParams[];
   currentView?: string;
@@ -42,7 +43,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
   const [state, dispatch] = useReducer(reducer, {
     modal: {},
   });
-  const { type, variant, currentView, views } = state.modal;
+  const { title, type, variant, currentView, views } = state.modal;
 
   const isEditOpen = type === ModalType.Edit;
 
@@ -101,6 +102,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
   };
 
   const provider = {
+    title,
     modalVariant: variant,
     modalViews: views,
     currentView: getCurrentView(),

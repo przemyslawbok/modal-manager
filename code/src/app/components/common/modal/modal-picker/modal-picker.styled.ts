@@ -9,7 +9,7 @@ export const CenteredModalBox = styled(Box)`
 `
 
 export const RightModalBox = styled(Box)`
-  width: 400px;
+  width: 600px;
   height: 100%;
   border: 1px solid black;
   padding: 1.5rem;

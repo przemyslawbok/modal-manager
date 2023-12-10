@@ -11,6 +11,7 @@ export const StyledModal = styled(Modal)<StyledModalProps>`
   align-items: ${({variant}) => variant === ModalVariant.Bottom ? "flex-end" : "center" };
   justify-content: ${({variant}) => variant === ModalVariant.Right ? "flex-end" : "center" };
   ${({variant}) => variant === ModalVariant.Right ? "padding-top: 24px" : null };
+  z-index: -1;
 `
 
 export const Header = styled(Box)`
@@ -24,13 +25,4 @@ export const Header = styled(Box)`
 export const Title = styled(Typography)`
   display: block;
   margin-right: auto;
-`
-
-export const StyledContentBox = styled(Box)`
-  width: 100%;
-  height: 100%;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `

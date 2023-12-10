@@ -8,7 +8,6 @@ import {
 import { useModalContext } from '@/app/use-modal';
 
 type ModalPickerProps = {
-  isOpen: boolean;
   children: ReactNode;
 };
 

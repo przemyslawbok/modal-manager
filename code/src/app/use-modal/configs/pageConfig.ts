@@ -1,13 +1,13 @@
 import { ModalParams, ModalType, ModalVariant, InspirationViews } from '../data';
 
 export const PAGE_CONFIG: ModalParams[] = [
-  { type: ModalType.Edit, variant: ModalVariant.Centered },
-  { type: ModalType.Developments, variant: ModalVariant.Bottom },
+  { title: "Edit modal", type: ModalType.Edit, variant: ModalVariant.Centered },
+  { title: "Developments modal", type: ModalType.Developments, variant: ModalVariant.Bottom },
   { type: ModalType.Inspiration, variant: ModalVariant.Right, 
     views: [ 
-      { view: InspirationViews.Inspiration, variant: ModalVariant.Right }, 
-      { view: InspirationViews.AddMoodboards, variant: ModalVariant.Right }, 
-      { view: InspirationViews.AddResources, variant: ModalVariant.Right }
+      { title: "Inspiration modal", view: InspirationViews.Inspiration, variant: ModalVariant.Right }, 
+      { title: "AddMoodboards modal", view: InspirationViews.AddMoodboards, variant: ModalVariant.Right }, 
+      { title: "AddResources modal", view: InspirationViews.AddResources, variant: ModalVariant.Right }
     ],
     currentView: InspirationViews.Inspiration
   },

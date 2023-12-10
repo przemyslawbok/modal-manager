@@ -19,11 +19,13 @@ export enum InspirationViews {
 }
 
 export interface ViewParams {
+  title?: string,
   view: string,
   variant: ModalVariant
 }
 
 export interface ModalParams {
+  title?: string,
   type?: ModalType,
   variant?: ModalVariant
   currentView?: string;
