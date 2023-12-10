@@ -12,10 +12,11 @@ import {
   ShowDevelopmentsButton,
   ShowInspirationButton,
 } from './buttons';
+import { PAGE_CONFIG } from '@/app/use-modal/configs/pageConfig';
 
 export const ModalManager: FC = () => {
   return (
-    <ModalProvider>
+    <ModalProvider config={PAGE_CONFIG}>
       <EditButton />
       <ShowInspirationButton />
       <ShowDevelopmentsButton />

@@ -1,32 +1,13 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
-
-enum Actions {
-  Edit = 'EDIT',
-  Inspiration = 'INSPIRATION',
-  AddResources = 'ADD_RESOURCES',
-  AddMoodboards = 'ADD_MOODBOARDS',
-  Developments = 'DEVELOPMENTS',
-  Reset = 'RESET',
-}
-
-enum ModalType {
-  Edit,
-  Inspiration,
-  AddResources,
-  AddMoodboards,
-  Developments,
-}
-
-type Modal = {
-  type?: ModalType;
-  views?: ModalType[];
-};
+import { ModalParams, ModalType, ModalVariant } from './data';
+import { getParamsObject } from './utils/get-params-object';
 
 interface ModalState {
-  modal?: ModalType;
+  modal: ModalParams;
 }
 
 interface ModalContextProps {
+  modalVariant?: ModalVariant;
   isEditOpen: boolean;
   isInspirationOpen: boolean;
   isAddResourcesOpen: boolean;
@@ -42,68 +23,57 @@ interface ModalContextProps {
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
-const reducer = (state: ModalState, action: Actions): ModalState => {
-  switch (action) {
-    case Actions.Edit:
-      return { ...state, modal: ModalType.Edit };
-    case Actions.Inspiration:
-      return { ...state, modal: ModalType.Inspiration };
-    case Actions.AddResources:
-      return { ...state, modal: ModalType.AddResources };
-    case Actions.AddMoodboards:
-      return { ...state, modal: ModalType.AddMoodboards };
-    case Actions.Developments:
-      return { ...state, modal: ModalType.Developments };
-    case Actions.Reset:
-      return { ...state, modal: undefined };
-    default:
-      return state;
-  }
+const reducer = (state: ModalState, params: ModalParams): ModalState => {
+  return { ...state, modal: { ...params } };
 };
 
 interface ModalProviderProps {
+  config: ModalParams[];
   children: ReactNode;
 }
 
-const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {});
-  const { modal } = state;
+const ModalProvider: React.FC<ModalProviderProps> = ({ config, children }) => {
+  const [state, dispatch] = useReducer(reducer, {
+    modal: {},
+  });
+  const { type, variant } = state.modal;
 
-  const isEditOpen = modal === ModalType.Edit;
+  const isEditOpen = type === ModalType.Edit;
 
   const showEdit = () => {
-    dispatch(Actions.Edit);
+    dispatch(getParamsObject(ModalType.Edit, config));
   };
 
-  const isInspirationOpen = modal === ModalType.Inspiration;
+  const isInspirationOpen = type === ModalType.Inspiration;
 
   const showInspiration = () => {
-    dispatch(Actions.Inspiration);
+    dispatch(getParamsObject(ModalType.Inspiration, config));
   };
 
-  const isAddResourcesOpen = modal === ModalType.AddResources;
+  const isAddResourcesOpen = type === ModalType.AddResources;
 
   const showAddResources = () => {
-    dispatch(Actions.AddResources);
+    dispatch(getParamsObject(ModalType.AddResources, config));
   };
 
-  const isAddMoodboardsOpen = modal === ModalType.AddMoodboards;
+  const isAddMoodboardsOpen = type === ModalType.AddMoodboards;
 
   const showAddMoodboards = () => {
-    dispatch(Actions.AddMoodboards);
+    dispatch(getParamsObject(ModalType.AddMoodboards, config));
   };
 
-  const isDevelopmentsOpen = modal === ModalType.Developments;
+  const isDevelopmentsOpen = type === ModalType.Developments;
 
   const showDevelopments = () => {
-    dispatch(Actions.Developments);
+    dispatch(getParamsObject(ModalType.Developments, config));
   };
 
   const resetModal = () => {
-    dispatch(Actions.Reset);
+    dispatch({});
   };
 
   const provider = {
+    modalVariant: variant,
     isEditOpen,
     isInspirationOpen,
     isAddResourcesOpen,

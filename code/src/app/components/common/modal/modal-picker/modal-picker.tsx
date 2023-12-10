@@ -12,15 +12,14 @@ import { useModalContext } from '@/app/use-modal';
 
 type ModalPickerProps = {
   isOpen: boolean;
-  variant: ModalVariant;
   children: ReactNode;
 };
 
 export const ModalPicker: FC<ModalPickerProps> = (props) => {
-  const { isOpen, variant, children } = props;
-  const { resetModal } = useModalContext();
+  const { isOpen, children } = props;
+  const { modalVariant, resetModal } = useModalContext();
 
-  switch (variant) {
+  switch (modalVariant) {
     case ModalVariant.Centered:
       return (
         <CenteredModal open={isOpen} onClose={resetModal} hideBackdrop>
