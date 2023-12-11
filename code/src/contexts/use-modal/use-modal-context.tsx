@@ -1,8 +1,9 @@
-import React, { createContext, useReducer, ReactNode } from 'react';
-import { getParamsObject } from './utils/get-params-object';
-import { ViewForInspiration, ModalType, ModalVariant } from '@/data/enums';
-import { Modal, View } from '@/data/modal';
-import { reducer } from './utils/reducer';
+import React, { createContext, useReducer, ReactNode } from "react";
+import { getParamsObject } from "./utils/get-params-object";
+import { ViewForInspiration, ModalType, ModalVariant } from "@/data/enums";
+import { Modal, View } from "@/data/modal";
+import { reducer } from "./utils/reducer";
+import { User } from "@/data/user";
 
 interface ModalContextProps {
   title?: string;
@@ -25,6 +26,7 @@ interface ModalContextProps {
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 interface ModalProviderProps {
+  user?: User;
   configs: Modal[];
   children: ReactNode;
 }
@@ -81,7 +83,8 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
 
   const showInitialView = () => {
     const initialView = views ? views[0].view : undefined;
-    if (initialView) dispatch(getParamsObject(type, configs, initialView));
+    if (initialView && type)
+      dispatch(getParamsObject(type, configs, initialView));
   };
 
   const resetModal = () => {
@@ -127,7 +130,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
 const useModalContext = () => {
   const context = React.useContext(ModalContext);
   if (!context) {
-    throw new Error('useModalContext must be used within an ModalProvider');
+    throw new Error("useModalContext must be used within an ModalProvider");
   }
   return context;
 };

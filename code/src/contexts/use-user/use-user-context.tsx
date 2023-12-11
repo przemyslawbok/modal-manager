@@ -1,11 +1,11 @@
-import { FC, ReactNode, createContext, useContext, useState } from 'react';
-import { User } from './data/user';
+import { FC, ReactNode, createContext, useContext, useState } from "react";
 import {
   Admin,
   NoDevelopmentsUser,
   NoEditUser,
   NoInspirationUser,
-} from './data/dummy-users';
+} from "./data/dummy-users";
+import { User } from "@/data/user";
 
 type UserContextProps = {
   user?: User;
@@ -45,7 +45,7 @@ const UserProvider: FC<UserProviderProps> = ({ children }) => {
 const useUserContext = () => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error('useUserContext must be used within an UserProvider');
+    throw new Error("useUserContext must be used within an UserProvider");
   }
   return context;
 };
