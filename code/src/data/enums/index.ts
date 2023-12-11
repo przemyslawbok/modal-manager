@@ -1,5 +1,5 @@
 import { ModalType } from './modal-type';
 import { ModalVariant } from './modal-variant';
-import { InspirationView } from './inspiration-view';
+import { ViewForInspiration } from './view-for-inspiration';
 
-export { ModalType, ModalVariant, InspirationView }
+export { ModalType, ModalVariant, ViewForInspiration }

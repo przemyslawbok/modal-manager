@@ -1,23 +1,18 @@
-import { useModalContext } from '@/app/use-modal/use-modal.context';
 import { FC } from 'react';
 import { InspirationView } from './inspiration-view';
 import { AddResourcesView } from './add-resources-view';
 import { AddMoodboardsView } from './add-moodboards-view';
-import { Modal } from '@/app/components/common/modal';
-import { InspirationViews } from '@/app/use-modal/data';
+import { useModalContext } from '@/contexts/use-modal';
+import { Modal } from '@/components/common/modal';
 
 export const InspirationModal: FC = () => {
-  const { title, currentView, isInspirationOpen, showInspiration } =
-    useModalContext();
+  const { title, isInspirationOpen } = useModalContext();
 
   if (!isInspirationOpen) return null;
 
-  const onBackClick =
-    currentView !== InspirationViews.Inspiration ? showInspiration : undefined;
-
   return (
     <>
-      <Modal title={title} isOpen={isInspirationOpen} onBackClick={onBackClick}>
+      <Modal title={title} isOpen={isInspirationOpen}>
         <InspirationView />
         <AddResourcesView />
         <AddMoodboardsView />

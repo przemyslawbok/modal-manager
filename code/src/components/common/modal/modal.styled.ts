@@ -1,4 +1,4 @@
-import { ModalVariant } from '@/app/use-modal/data';
+import { ModalVariant } from '@/data/enums';
 import styled from '@emotion/styled'
 import { Box, Modal, Typography } from '@mui/material'
 

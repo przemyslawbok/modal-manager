@@ -1,16 +1,16 @@
-import { useModalContext } from '@/app/use-modal/use-modal.context';
 import { FC } from 'react';
+import { Section, SectionRow } from './inspiration-view.styled';
+import { useModalContext } from '@/contexts/use-modal';
+import { ViewForInspiration } from '@/data/enums';
 import {
   AddMoodboardsButton,
   AddResourcesButton,
-} from '@/app/components/modal-manager/buttons';
-import { InspirationViews } from '@/app/use-modal/data';
-import { Section, SectionRow } from './inspiration-view.styled';
+} from '@/components/modal-manager/buttons';
 
 export const InspirationView: FC = () => {
   const { currentView } = useModalContext();
 
-  const isInspirationViewOpen = currentView === InspirationViews.Inspiration;
+  const isInspirationViewOpen = currentView === ViewForInspiration.Inspiration;
 
   if (!isInspirationViewOpen) return null;
 

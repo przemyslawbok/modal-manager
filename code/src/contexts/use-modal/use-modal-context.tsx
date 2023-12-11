@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
 import { getParamsObject } from './utils/get-params-object';
-import { InspirationView, ModalType, ModalVariant } from '@/data/enums';
+import { ViewForInspiration, ModalType, ModalVariant } from '@/data/enums';
 import { Modal, View } from '@/data/modal';
 import { reducer } from './utils/reducer';
 
@@ -48,7 +48,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
-        InspirationView.Inspiration
+        ViewForInspiration.Inspiration
       )
     );
   };
@@ -64,7 +64,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
-        InspirationView.AddResources
+        ViewForInspiration.AddResources
       )
     );
   };
@@ -74,7 +74,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
-        InspirationView.AddMoodboards
+        ViewForInspiration.AddMoodboards
       )
     );
   };
@@ -124,7 +124,6 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
   );
 };
 
-// Create a custom hook to use the context
 const useModalContext = () => {
   const context = React.useContext(ModalContext);
   if (!context) {

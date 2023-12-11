@@ -1,4 +1,4 @@
-import { useModalContext } from '@/app/use-modal/use-modal.context';
+import { useModalContext } from '@/contexts/use-modal';
 import { Button } from '@mui/material';
 import { FC } from 'react';
 

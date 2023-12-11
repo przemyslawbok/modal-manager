@@ -1,5 +1,5 @@
-import { Modal } from '@/app/components/common/modal';
-import { useModalContext } from '@/app/use-modal/use-modal.context';
+import { Modal } from '@/components/common/modal';
+import { useModalContext } from '@/contexts/use-modal';
 import { FC } from 'react';
 
 export const DevelopmentsModal: FC = () => {

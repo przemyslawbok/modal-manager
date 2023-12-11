@@ -1,9 +1,9 @@
-import { InspirationView, ModalType, ModalVariant } from '@/data/enums';
+import { ModalType, ModalVariant, ViewForInspiration } from '@/data/enums';
 import { modalConfigBuilder, viewConfigBuilder } from './utils/modal-config-factory';
 
-const InspirationViewConfig = viewConfigBuilder(InspirationView.Inspiration, ModalVariant.Right, "Inspiration modal");
-const AddMoodboardsViewConfig = viewConfigBuilder(InspirationView.AddMoodboards, ModalVariant.Right, "AddMoodboards modal");
-const AddResourcesViewConfig = viewConfigBuilder(InspirationView.AddResources, ModalVariant.Right, "AddResources modal");
+const InspirationViewConfig = viewConfigBuilder(ViewForInspiration.Inspiration, ModalVariant.Right, "Inspiration modal");
+const AddMoodboardsViewConfig = viewConfigBuilder(ViewForInspiration.AddMoodboards, ModalVariant.Right, "AddMoodboards modal");
+const AddResourcesViewConfig = viewConfigBuilder(ViewForInspiration.AddResources, ModalVariant.Right, "AddResources modal");
 
 const EditModalConfig = modalConfigBuilder(ModalType.Edit, ModalVariant.Centered, "Edit modal");
 const DevelopmentsModalConfig = modalConfigBuilder(ModalType.Developments, ModalVariant.Bottom, "Developments modal");
