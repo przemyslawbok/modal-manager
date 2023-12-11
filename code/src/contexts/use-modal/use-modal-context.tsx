@@ -12,12 +12,14 @@ interface ModalContextProps {
   isEditOpen: boolean;
   isInspirationOpen: boolean;
   isDevelopmentsOpen: boolean;
+  isBackButtonVisible: boolean;
   showEdit: () => void;
   showInspiration: () => void;
   showDevelopments: () => void;
-  resetModal: () => void;
   showAddResources: () => void;
   showAddMoodboards: () => void;
+  resetModal: () => void;
+  showInitialView: () => void;
 }
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
@@ -77,6 +79,15 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
     );
   };
 
+  const showInitialView = () => {
+    const initialView = views ? views[0].view : undefined;
+    if (initialView) dispatch(getParamsObject(type, configs, initialView));
+  };
+
+  const resetModal = () => {
+    dispatch({});
+  };
+
   const getCurrentView = () => {
     //TODO: add error handling when set parameters are not in config
     const config = configs.find((config) => config.type === type);
@@ -85,8 +96,9 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
     return view?.view;
   };
 
-  const resetModal = () => {
-    dispatch({});
+  const isInitialViewCurrent = () => {
+    const initialView = views ? views[0].view : undefined;
+    return initialView !== currentView;
   };
 
   const provider = {
@@ -97,12 +109,14 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
     isEditOpen,
     isInspirationOpen,
     isDevelopmentsOpen,
+    isBackButtonVisible: isInitialViewCurrent(),
     showEdit,
     showInspiration,
     showDevelopments,
-    resetModal,
     showAddResources,
     showAddMoodboards,
+    resetModal,
+    showInitialView,
   };
 
   return (
