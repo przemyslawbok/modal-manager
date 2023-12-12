@@ -3,6 +3,7 @@ import React, {
   useReducer,
   ReactNode,
   createElement,
+  Fragment,
 } from 'react';
 import { getParamsObject } from './utils/get-params-object';
 import { ViewForInspiration, ModalType, ModalVariant } from '@/data/enums';
@@ -110,8 +111,10 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   };
 
   const getModalsFromConfigs = () => {
-    return configs.map(({ modalComponent }: ModalConfig) => (
-      <>{modalComponent && createElement(modalComponent)}</>
+    return configs.map(({ modalComponent }: ModalConfig, index) => (
+      <Fragment key={index}>
+        {modalComponent && createElement(modalComponent)}
+      </Fragment>
     ));
   };
 
