@@ -10,7 +10,7 @@ export const StyledModal = styled(Modal)<StyledModalProps>`
   display: flex;
   align-items: ${({variant}) => variant === ModalVariant.Bottom ? "flex-end" : "center" };
   justify-content: ${({variant}) => variant === ModalVariant.Right ? "flex-end" : "center" };
-  ${({variant}) => variant === ModalVariant.Right ? "padding-top: 24px" : null };
+  ${({variant}) => variant === ModalVariant.Right ? "padding-top: 56px" : null };
   z-index: -1;
 `
 

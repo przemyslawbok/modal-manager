@@ -3,6 +3,7 @@ import { getParamsObject } from './utils/get-params-object';
 import { ViewForInspiration, ModalType, ModalVariant } from '@/data/enums';
 import { Modal, View } from '@/data/modal';
 import { reducer } from './utils/reducer';
+import { User } from '@/data/user';
 
 interface ModalContextProps {
   title?: string;
@@ -25,38 +26,43 @@ interface ModalContextProps {
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 interface ModalProviderProps {
+  user?: User;
   configs: Modal[];
   children: ReactNode;
 }
 
-const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
+const ModalProvider: React.FC<ModalProviderProps> = ({
+  user,
+  configs,
+  children,
+}) => {
   const [state, dispatch] = useReducer(reducer, {
     modal: {},
   });
+
   const { title, type, variant, currentView, views } = state.modal;
 
   const isEditOpen = type === ModalType.Edit;
+  const isDevelopmentsOpen = type === ModalType.Developments;
+  const isInspirationOpen = type === ModalType.Inspiration;
 
   const showEdit = () => {
-    dispatch(getParamsObject(ModalType.Edit, configs));
+    dispatch(getParamsObject(ModalType.Edit, configs, user));
   };
 
-  const isInspirationOpen = type === ModalType.Inspiration;
+  const showDevelopments = () => {
+    dispatch(getParamsObject(ModalType.Developments, configs, user));
+  };
 
   const showInspiration = () => {
     dispatch(
       getParamsObject(
         ModalType.Inspiration,
         configs,
+        user,
         ViewForInspiration.Inspiration
       )
     );
-  };
-
-  const isDevelopmentsOpen = type === ModalType.Developments;
-
-  const showDevelopments = () => {
-    dispatch(getParamsObject(ModalType.Developments, configs));
   };
 
   const showAddResources = () => {
@@ -64,6 +70,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
+        user,
         ViewForInspiration.AddResources
       )
     );
@@ -74,6 +81,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
       getParamsObject(
         ModalType.Inspiration,
         configs,
+        user,
         ViewForInspiration.AddMoodboards
       )
     );
@@ -81,7 +89,8 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ configs, children }) => {
 
   const showInitialView = () => {
     const initialView = views ? views[0].view : undefined;
-    if (initialView) dispatch(getParamsObject(type, configs, initialView));
+    if (type && initialView)
+      dispatch(getParamsObject(type, configs, user, initialView));
   };
 
   const resetModal = () => {
