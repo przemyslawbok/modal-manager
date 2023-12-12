@@ -19,6 +19,8 @@ interface ModalContextProps {
   isInspirationOpen: boolean;
   isDevelopmentsOpen: boolean;
   isBackButtonVisible: boolean;
+  isCreateOpen: boolean;
+  showCreate: () => void;
   showEdit: () => void;
   showInspiration: () => void;
   showDevelopments: () => void;
@@ -47,9 +49,14 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
 
   const { title, type, variant, currentView, views } = state.modal;
 
+  const isCreateOpen = type === ModalType.Create;
   const isEditOpen = type === ModalType.Edit;
   const isDevelopmentsOpen = type === ModalType.Developments;
   const isInspirationOpen = type === ModalType.Inspiration;
+
+  const showCreate = () => {
+    dispatch(getParamsObject(ModalType.Create, configs, user));
+  };
 
   const showEdit = () => {
     dispatch(getParamsObject(ModalType.Edit, configs, user));
@@ -127,10 +134,12 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
     title,
     modalVariant: variant,
     currentView: getCurrentView(),
+    isCreateOpen,
     isEditOpen,
     isInspirationOpen,
     isDevelopmentsOpen,
     isBackButtonVisible: isInitialViewCurrent(),
+    showCreate,
     showEdit,
     showInspiration,
     showDevelopments,

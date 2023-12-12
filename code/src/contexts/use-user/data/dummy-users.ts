@@ -9,6 +9,7 @@ export const Admin: User = {
     Permissions.ViewInspiration,
     Permissions.AddMoodboards,
     Permissions.AddResources,
+    Permissions.Create
   ],
 };
 
