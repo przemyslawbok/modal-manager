@@ -6,7 +6,5 @@ export interface Modal {
   type?: ModalType;
   variant?: ModalVariant;
   currentView?: string;
-  permission?: string;
   views?: View[];
-  modalComponent?: React.ComponentType<any>
 }

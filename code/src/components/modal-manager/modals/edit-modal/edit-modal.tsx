@@ -3,10 +3,10 @@ import { useModalContext } from '@/contexts/use-modal';
 import { FC } from 'react';
 
 export const EditModal: FC = () => {
-  const { isEditOpen } = useModalContext();
+  const { title, isEditOpen } = useModalContext();
 
   return (
-    <Modal title='Edit modal' isOpen={isEditOpen}>
+    <Modal title={title} isOpen={isEditOpen}>
       Edit modal
     </Modal>
   );
