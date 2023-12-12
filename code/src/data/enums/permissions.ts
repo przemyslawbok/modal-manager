@@ -3,4 +3,5 @@ export enum Permissions {
   ViewInspiration = 'VIEW_INSPIRATION',
   AddMoodboards = 'ADD_MOODBOARDS',
   AddResources = 'ADD_RESOURCES',
+  Create = "CREATE",
 }

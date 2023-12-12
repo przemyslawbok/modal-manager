@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import {
+  CreateButton,
   EditButton,
   ShowDevelopmentsButton,
   ShowInspirationButton,
@@ -20,6 +21,7 @@ export const ModalManager: FC<ModalManagerProps> = ({ config }) => {
   return (
     <ModalProvider configs={config} user={user}>
       <Content>
+        <CreateButton />
         <EditButton />
         <ShowInspirationButton />
         <ShowDevelopmentsButton />

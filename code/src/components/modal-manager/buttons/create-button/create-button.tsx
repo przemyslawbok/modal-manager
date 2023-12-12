@@ -1,6 +1,9 @@
+import { useModalContext } from '@/contexts/use-modal';
 import { Button } from '@mui/material';
 import { FC } from 'react';
 
 export const CreateButton: FC = () => {
-  return <Button onClick={undefined}>Create</Button>;
+  const { showCreate } = useModalContext();
+
+  return <Button onClick={showCreate}>Create</Button>;
 };
