@@ -1,8 +1,8 @@
 import { ModalType } from '@/data/enums';
-import { Modal } from '@/data/modal';
+import { Modal, ModalConfig } from '@/data/modal';
 import { User } from '@/data/user';
 
-export const getParamsObject = (modalType: ModalType, configs: Modal[], user?: User, currentView?: string) => {
+export const getParamsObject = (modalType: ModalType, configs: ModalConfig[], user?: User, currentView?: string): Modal => {
   const modalConfig = configs.find(({type}) => type === modalType);
   
   if (!modalConfig) {

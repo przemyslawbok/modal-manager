@@ -3,10 +3,10 @@ import { useModalContext } from '@/contexts/use-modal';
 import { FC } from 'react';
 
 export const DevelopmentsModal: FC = () => {
-  const { isDevelopmentsOpen } = useModalContext();
+  const { title, isDevelopmentsOpen } = useModalContext();
 
   return (
-    <Modal title='Developments modal' isOpen={isDevelopmentsOpen}>
+    <Modal title={title} isOpen={isDevelopmentsOpen}>
       Developments modal
     </Modal>
   );

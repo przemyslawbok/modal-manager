@@ -1,9 +1,9 @@
 import { ModalType } from '@/data/enums'
 import { ModalConfigFactory } from './modal-config-factory'
-import { Modal } from '@/data/modal'
+import { ModalConfig } from '@/data/modal'
 
-export const PageConfigFactory = (modalTypes: ModalType[], modalConfigs: Modal[]) => {
-  const configs: Modal[] = []
+export const PageConfigFactory = (modalTypes: ModalType[], modalConfigs: ModalConfig[]) => {
+  const configs: ModalConfig[] = []
 
   modalTypes.forEach(modalType => {
     const config = ModalConfigFactory(modalType, modalConfigs)

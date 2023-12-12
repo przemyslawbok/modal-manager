@@ -6,14 +6,13 @@ import React, {
 } from 'react';
 import { getParamsObject } from './utils/get-params-object';
 import { ViewForInspiration, ModalType, ModalVariant } from '@/data/enums';
-import { Modal, View } from '@/data/modal';
+import { Modal, ModalConfig } from '@/data/modal';
 import { reducer } from './utils/reducer';
 import { User } from '@/data/user';
 
 interface ModalContextProps {
   title?: string;
   modalVariant?: ModalVariant;
-  modalViews?: View[];
   currentView?: string;
   isEditOpen: boolean;
   isInspirationOpen: boolean;
@@ -111,7 +110,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   };
 
   const getModalsFromConfigs = () => {
-    return configs.map(({ modalComponent }: Modal) => (
+    return configs.map(({ modalComponent }: ModalConfig) => (
       <>{modalComponent && createElement(modalComponent)}</>
     ));
   };
@@ -124,7 +123,6 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   const provider = {
     title,
     modalVariant: variant,
-    modalViews: views,
     currentView: getCurrentView(),
     isEditOpen,
     isInspirationOpen,

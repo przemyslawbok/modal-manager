@@ -5,13 +5,13 @@ import {
   ShowInspirationButton,
 } from './buttons';
 import { ModalProvider } from '@/contexts/use-modal';
-import { Modal } from '@/data/modal';
+import { ModalConfig } from '@/data/modal';
 import { Content } from './modal-manager.styled';
 import { UserSelect } from '../user-select/user-select';
 import { useUserContext } from '@/contexts/use-user';
 
 type ModalManagerProps = {
-  config: Modal[];
+  config: ModalConfig[];
 };
 
 export const ModalManager: FC<ModalManagerProps> = ({ config }) => {
