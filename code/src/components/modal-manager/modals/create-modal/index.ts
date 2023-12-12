@@ -1,3 +1,3 @@
-import { EditModal } from './edit-modal'
+import { CreateModal } from './create-modal'
 
-export { EditModal }
+export { CreateModal }
