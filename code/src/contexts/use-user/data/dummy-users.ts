@@ -1,9 +1,9 @@
-import { User } from './user';
-import { Permissions } from './permissions';
+import { Roles, Permissions } from '@/data/enums';
+import { User } from '@/data/user';
 
 export const Admin: User = {
   username: 'Admin',
-  role: 'admin',
+  role: Roles.Admin,
   permissions: [
     Permissions.ViewDevelopments,
     Permissions.ViewInspiration,
@@ -14,7 +14,7 @@ export const Admin: User = {
 
 export const NoDevelopmentsUser: User = {
   username: 'No Developments',
-  role: 'no-dev',
+  role: Roles.NoDevelopmentsUser,
   permissions: [
     Permissions.ViewInspiration,
     Permissions.AddMoodboards,
@@ -24,12 +24,12 @@ export const NoDevelopmentsUser: User = {
 
 export const NoEditUser: User = {
   username: 'No Edit Inspiration',
-  role: 'no-edit',
+  role: Roles.NoEditUser,
   permissions: [Permissions.ViewDevelopments, Permissions.ViewInspiration],
 };
 
 export const NoInspirationUser: User = {
   username: 'No Inspiration',
-  role: 'no-inspiration',
+  role: Roles.NoInspirationUser,
   permissions: [Permissions.ViewDevelopments],
 };

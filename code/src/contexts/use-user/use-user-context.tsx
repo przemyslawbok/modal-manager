@@ -1,11 +1,11 @@
 import { FC, ReactNode, createContext, useContext, useState } from 'react';
-import { User } from './data/user';
 import {
   Admin,
   NoDevelopmentsUser,
   NoEditUser,
   NoInspirationUser,
 } from './data/dummy-users';
+import { User } from '@/data/user';
 
 type UserContextProps = {
   user?: User;

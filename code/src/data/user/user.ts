@@ -1,4 +1,4 @@
-import { Permissions } from './permissions';
+import { Permissions } from '../enums/permissions';
 
 export type User = {
   username?: string;
