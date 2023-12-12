@@ -1,4 +1,9 @@
-import React, { createContext, useReducer, ReactNode } from 'react';
+import React, {
+  createContext,
+  useReducer,
+  ReactNode,
+  createElement,
+} from 'react';
 import { getParamsObject } from './utils/get-params-object';
 import { ViewForInspiration, ModalType, ModalVariant } from '@/data/enums';
 import { Modal, View } from '@/data/modal';
@@ -105,6 +110,12 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
     return view?.view;
   };
 
+  const getModalsFromConfigs = () => {
+    return configs.map(({ modalComponent }: Modal) => (
+      <>{modalComponent && createElement(modalComponent)}</>
+    ));
+  };
+
   const isInitialViewCurrent = () => {
     const initialView = views ? views[0].view : undefined;
     return initialView !== currentView;
@@ -129,7 +140,10 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   };
 
   return (
-    <ModalContext.Provider value={provider}>{children}</ModalContext.Provider>
+    <ModalContext.Provider value={provider}>
+      {children}
+      {getModalsFromConfigs()}
+    </ModalContext.Provider>
   );
 };
 
