@@ -8,4 +8,5 @@ export interface Modal {
   currentView?: string;
   permission?: string;
   views?: View[];
+  modalComponent?: React.ComponentType<any>
 }

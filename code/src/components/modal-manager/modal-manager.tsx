@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { DevelopmentsModal, EditModal, InspirationModal } from './modals';
 import {
   EditButton,
   ShowDevelopmentsButton,
@@ -24,9 +23,6 @@ export const ModalManager: FC<ModalManagerProps> = ({ config }) => {
         <EditButton />
         <ShowInspirationButton />
         <ShowDevelopmentsButton />
-        <EditModal />
-        <InspirationModal />
-        <DevelopmentsModal />
         <UserSelect />
       </Content>
     </ModalProvider>
