@@ -1,3 +1,3 @@
-import { ViewConfigFactory } from './configs';
+import { ModalConfigFactory, ModalWithViewsConfigFactory, PageConfigFactory, VariantConfigFactory, ViewConfigFactory } from './configs';
 
-export type { ViewConfigFactory }
+export type { ModalConfigFactory, VariantConfigFactory, ModalWithViewsConfigFactory, ViewConfigFactory, PageConfigFactory }

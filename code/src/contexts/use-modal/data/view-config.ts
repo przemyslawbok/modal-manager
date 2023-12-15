@@ -1,10 +1,10 @@
 import { ComponentType } from 'react';
 import { EnumKeys, EnumObject, EnumValues } from './common';
 
-export type ViewConfig<C extends EnumObject, P extends EnumObject> = {
+export type ViewConfig<Type extends EnumObject, Permission extends EnumObject> = {
   title: string,
-  type: EnumKeys<C> | EnumValues<C>;
+  type: EnumKeys<Type> | EnumValues<Type>;
   content?: ComponentType<any>,
-  permission?: EnumKeys<P> | EnumValues<P>;
-  nextView?: ViewConfig<C, P>;
+  permission?: EnumKeys<Permission> | EnumValues<Permission>;
+  nextView?: ViewConfig<Type, Permission>;
 }

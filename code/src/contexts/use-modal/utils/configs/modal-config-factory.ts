@@ -1,15 +1,16 @@
 import { ComponentType } from 'react';
 import { EnumKeys, EnumObject, EnumValues } from '../../data/common';
-import { ViewConfig } from '../../data';
+import { ModalConfig } from '../../data';
 
-export type ViewConfigFactory<
+export type ModalConfigFactory<
   Type extends EnumObject, 
+  Variant extends EnumObject, 
   Permission extends EnumObject, 
-  Content extends ViewConfig<Type, Permission>
+  Result extends ModalConfig<Type, Variant, Permission>
 > = (
-  title: string,
   type: EnumKeys<Type> | EnumValues<Type>,
+  variant: EnumKeys<Variant> | EnumValues<Variant>,
+  title?: string,
   permission?: EnumKeys<Permission> | EnumValues<Permission>,
-  content?: ComponentType<any>,
-  nextView?: ViewConfig<Type, Permission>
-) => Content;
+  modal?: ComponentType<any>,
+) => Result;
