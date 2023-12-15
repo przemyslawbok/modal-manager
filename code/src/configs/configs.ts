@@ -1,5 +1,5 @@
 import { ModalType, ModalVariant, ViewForInspiration, Permissions } from '@/data/enums';
-import { CustomModalConfig, CustomModalWithViewsConfig, CustomVariantConfig, CustomViewConfig } from '@/data/types';
+import { CustomModalConfig, CustomModalWithViewsConfig, CustomPageConfig, CustomVariantConfig, CustomViewConfig } from '@/data/types';
 import { CustomModalConfigFactory, CustomModalWithViewsConfigFactory, CustomPageConfigFactory, CustomVariantConfigFactory, CustomViewConfigFactory } from './utils';
 
 export const variantConfig: CustomVariantConfig = CustomVariantConfigFactory(ModalVariant.Centered);
@@ -13,7 +13,8 @@ const addMoodboardsViewConfig: CustomViewConfig = CustomViewConfigFactory("Add M
 const addResourcesViewConfig: CustomViewConfig = CustomViewConfigFactory("Add Resources Modal", ViewForInspiration.AddResources, Permissions.AddResources);
 const inspirationModalConfig: CustomModalWithViewsConfig = CustomModalWithViewsConfigFactory(ModalType.Inspiration, ModalVariant.Right, [inspirationViewConfig, addMoodboardsViewConfig, addResourcesViewConfig])
 
-export const modalConfigs: (CustomModalConfig | CustomModalWithViewsConfig)[] = [editModalConfig, developmentsModalConfig, inspirationModalConfig]
+export const modalsConfigs: CustomModalConfig[] = [editModalConfig, developmentsModalConfig];
+export const modalsWithViewsConfigs: CustomModalWithViewsConfig[] = [inspirationModalConfig];
 
-export const pageConfig: (CustomModalConfig | CustomModalWithViewsConfig)[] = CustomPageConfigFactory([ModalType.Edit, ModalType.Developments, ModalType.Inspiration], modalConfigs);
-export const restrictedPageConfig: (CustomModalConfig | CustomModalWithViewsConfig)[] = CustomPageConfigFactory([ModalType.Developments, ModalType.Inspiration], modalConfigs);
+export const pageConfig: CustomPageConfig = CustomPageConfigFactory([ModalType.Edit, ModalType.Developments, ModalType.Inspiration], modalsConfigs, modalsWithViewsConfigs);
+export const restrictedPageConfig: CustomPageConfig = CustomPageConfigFactory([ModalType.Developments, ModalType.Inspiration], modalsConfigs, modalsWithViewsConfigs);

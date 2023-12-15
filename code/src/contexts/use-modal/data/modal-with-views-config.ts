@@ -5,8 +5,8 @@ import { ViewConfig } from './view-config';
 export type ModalWithViewsConfig<
   ModalType extends EnumObject, 
   Variant extends EnumObject, 
-  ViewType extends EnumObject, 
-  Permission extends EnumObject
+  Permission extends EnumObject,
+  ViewType extends EnumObject | undefined, 
 > = 
 ModalConfig<ModalType, Variant, Permission> & 
 {

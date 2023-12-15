@@ -1,3 +1,3 @@
 import { EnumObject } from './enum-object';
 
-export type EnumKeys<T extends EnumObject> = keyof T;
+export type EnumKeys<T extends EnumObject | undefined> = keyof T;

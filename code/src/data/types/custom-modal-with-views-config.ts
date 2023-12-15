@@ -4,6 +4,6 @@ import { ModalType, ModalVariant, ViewForInspiration, Permissions } from '../enu
 export type CustomModalWithViewsConfig = ModalWithViewsConfig<
   typeof ModalType,
   typeof ModalVariant,
-  typeof ViewForInspiration,
-  typeof Permissions
+  typeof Permissions,
+  typeof ViewForInspiration | undefined
 >;
