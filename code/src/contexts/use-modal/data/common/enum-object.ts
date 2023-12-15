@@ -1,0 +1,1 @@
+export type EnumObject = { [key: string]: string };
