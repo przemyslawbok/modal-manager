@@ -1,7 +1,7 @@
-import { useUserContext } from '@/contexts/use-user';
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { FC } from 'react';
-import { Roles } from '@/data/enums/roles';
+import { useUserContext } from "@/contexts/use-user";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { FC } from "react";
+import { Roles } from "@/data/enums/roles";
 
 export const UserSelect: FC = () => {
   const {
@@ -32,11 +32,11 @@ export const UserSelect: FC = () => {
   };
 
   return (
-    <Select value={user?.role || ''} onChange={handleChange}>
+    <Select value={user?.role || ""} onChange={handleChange}>
       <MenuItem value={Roles.Admin}>Admin</MenuItem>
       <MenuItem value={Roles.NoDevelopmentsUser}>NoDevelopmentsUser</MenuItem>
       <MenuItem value={Roles.NoInspirationUser}>NoInspirationUser</MenuItem>
-      <MenuItem value={Roles.NoEditUser}>NoEditUser</MenuItem>
+      <MenuItem value={Roles.NoEditUser}>NoEditInspirationUser</MenuItem>
     </Select>
   );
 };
