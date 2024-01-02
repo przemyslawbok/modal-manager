@@ -1,3 +1,3 @@
-import { ModalConfigFactory,  PageConfigFactory, VariantConfigFactory } from './configs';
+import { ContentConfigFactory,  PageConfigFactory, VariantConfigFactory } from './configs';
 
-export type { ModalConfigFactory, VariantConfigFactory, PageConfigFactory }
+export type { ContentConfigFactory, VariantConfigFactory, PageConfigFactory }

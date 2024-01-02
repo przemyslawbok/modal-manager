@@ -1,5 +1,6 @@
-import { Modal } from '@/data/modal';
+import { EnumObject } from '.';
 
-export interface ModalState {
-  current: Modal;
+export type ModalState<ModalType extends EnumObject, ViewType extends EnumObject> = {
+  currentModal: ModalType;
+  currentView: ViewType;
 }

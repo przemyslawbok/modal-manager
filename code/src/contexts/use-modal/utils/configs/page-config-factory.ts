@@ -1,11 +1,11 @@
-import { EnumObject, EnumKeys, EnumValues, ModalConfig, PageConfig } from '../../data'
+import { EnumObject, EnumKeys, EnumValues, PageConfig, ContentConfig } from '../../data'
 
 export type PageConfigFactory<
-  ModalType extends EnumObject, 
+  ContentType extends EnumObject, 
   Variant extends EnumObject, 
   Permission extends EnumObject,
-  Result extends PageConfig<ModalType, Variant, Permission>
+  Result extends PageConfig<ContentType, Variant, Permission>
 > = (
-  modalTypes: EnumKeys<ModalType>[] | EnumValues<ModalType>[], 
-  modalsConfigs: ModalConfig<ModalType, Variant, Permission>[],
+  contentTypes: EnumKeys<ContentType>[] | EnumValues<ContentType>[], 
+  contentConfigs: ContentConfig<ContentType, Variant, Permission>[],
 ) => Result;

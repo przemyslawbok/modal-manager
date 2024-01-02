@@ -9,7 +9,6 @@ import { Content } from './modal-manager.styled';
 import { UserSelect } from '../user-select/user-select';
 import { useUserContext } from '@/contexts/use-user';
 import { CustomPageConfig } from '@/data/types';
-import { HOME_PAGE_CONFIG } from '@/configs/pageConfig';
 
 type ModalManagerProps = {
   config: CustomPageConfig;
@@ -18,10 +17,8 @@ type ModalManagerProps = {
 export const ModalManager: FC<ModalManagerProps> = ({ config }) => {
   const { user } = useUserContext();
 
-  //TODO: replace HOME_PAGE_CONFIG with config
-
   return (
-    <ModalProvider configs={HOME_PAGE_CONFIG} user={user}>
+    <ModalProvider config={config} user={user}>
       <Content>
         <EditButton />
         <ShowInspirationButton />

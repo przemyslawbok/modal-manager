@@ -1,24 +1,23 @@
 import { ContentType } from '@/data/enums';
-import { Modal, ModalConfig } from '@/data/modal';
+import { CustomContentConfig } from '@/data/types';
 import { User } from '@/data/user';
 
-export const getParamsObject = (modalType: ContentType, configs: ModalConfig[], user?: User, current?: ContentType): Modal => {
-  const modalConfig = configs.find(({type}) => type === modalType);
+export const getParamsObject = (modalType: ContentType, config: CustomContentConfig[], user?: User, viewType?: ContentType): CustomContentConfig => {
+  const modalConfig = config.find(({type}) => type === modalType);
   
   if (!modalConfig) {
     throw new Error(`Missing config for ${modalType}`)
   }
 
-  const view = modalConfig.views?.find(view => view === current);
-  const viewConfig = configs.find(({type}) => type === modalType);
+  const viewConfig = config.find(({type}) => type === viewType);
 
-  if (current && !viewConfig) {
-    throw new Error(`Missing config for ${modalType}, view ${current}`);
+  if (viewType && !viewConfig) {
+    throw new Error(`Missing config for ${modalType}, view ${viewType}`);
   }
 
   const checkConfigPermission = !modalConfig.permission;
   const checkModalPermission = user?.permissions?.some(permission => permission === modalConfig.permission)
-  const checkCurrentView = !current;
+  const checkCurrentView = !viewType;
   const checkViewPermission = checkCurrentView || user?.permissions?.some(permission => permission === viewConfig?.permission)
   
   const allowAccess = checkConfigPermission || (checkModalPermission && checkViewPermission);
@@ -27,8 +26,8 @@ export const getParamsObject = (modalType: ContentType, configs: ModalConfig[], 
     throw new Error(`Missing permissions for ${modalType}`)
   }
 
-  const viewTitle = current && viewConfig?.title;
+  const viewTitle = viewType && viewConfig?.title;
   const defaultTitle = modalConfig.title;
 
-  return { ...modalConfig, currentView: current, title:  viewTitle || defaultTitle };
+  return { ...modalConfig, currentView: viewType, title:  viewTitle || defaultTitle };
 }

@@ -7,18 +7,18 @@ typeof ContentType,
 typeof ModalVariant, 
 typeof Permission, 
 CustomPageConfig
-> = (contentTypes, modalsConfigs) => {
+> = (contentTypes, contentConfigs) => {
   const result: CustomPageConfig = {
     contents: [],
   }
 
   contentTypes.forEach(contentType => {
-    const modalConfig = modalsConfigs.find(modalConfig => modalConfig.type === contentType)
+    const contentConfig = contentConfigs.find(contentConfig => contentConfig.type === contentType)
 
-    if (!modalConfig) throw new Error(`Missing config for modal type: ${contentType}`)
+    if (!contentConfig) throw new Error(`Missing config for content type: ${contentType}`)
 
-    if (modalConfig) {
-      result.contents.push({ ...modalConfig })
+    if (contentConfig) {
+      result.contents.push({ ...contentConfig })
     }
   })
 
