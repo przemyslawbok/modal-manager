@@ -1,7 +1,7 @@
-import { ModalConfig, ModalWithViewsConfig, PageConfig, VariantConfig, ViewConfig } from './data';
+import { ModalConfig, PageConfig, VariantConfig } from './data';
 import { ModalProvider, useModalContext } from './use-modal-context'
-import { ModalConfigFactory, ModalWithViewsConfigFactory, PageConfigFactory, VariantConfigFactory, ViewConfigFactory } from './utils';
+import { ModalConfigFactory, PageConfigFactory, VariantConfigFactory } from './utils';
 
 export { ModalProvider, useModalContext };
-export type { ModalConfig, ViewConfig, VariantConfig, ModalWithViewsConfig, PageConfig }
-export type { ModalConfigFactory, VariantConfigFactory, ModalWithViewsConfigFactory, ViewConfigFactory, PageConfigFactory }
+export type { ModalConfig, VariantConfig, PageConfig }
+export type { ModalConfigFactory, VariantConfigFactory, PageConfigFactory }

@@ -1,15 +1,11 @@
-import { ModalType, ModalVariant } from '@/data/enums';
-import { Modal, ModalConfig, View } from '@/data/modal';
+import { ContentType, ModalVariant } from '@/data/enums';
+import { Modal, ModalConfig } from '@/data/modal';
 
-export const modalConfigBuilder = (type: ModalType, variant: ModalVariant, title?: string,  views?: View[], permission?: string, component?: React.ComponentType<any>): ModalConfig => {
+export const modalConfigBuilder = (type: ContentType, variant: ModalVariant, title?: string,  views?: ContentType[], permission?: string, component?: React.ComponentType<any>): ModalConfig => {
   return { type, variant, title, views, permission, modalComponent: component };
 }
 
-export const viewConfigBuilder = (view: string, title?: string, permission?: string): View => {
-  return { view, title, permission };
-}
-
-export const ModalConfigFactory = (modalType: ModalType, modalConfigs: Modal[]): Modal | undefined => {
-  const config = modalConfigs.find(modal => modal.type === modalType);
+export const ModalConfigFactory = (contentType: ContentType, modalConfigs: Modal[]): Modal | undefined => {
+  const config = modalConfigs.find(modal => modal.type === contentType);
   return config;
 }

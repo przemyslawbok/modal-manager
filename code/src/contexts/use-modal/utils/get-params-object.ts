@@ -1,25 +1,25 @@
-import { ModalType } from '@/data/enums';
+import { ContentType } from '@/data/enums';
 import { Modal, ModalConfig } from '@/data/modal';
 import { User } from '@/data/user';
 
-export const getParamsObject = (modalType: ModalType, configs: ModalConfig[], user?: User, currentView?: string): Modal => {
+export const getParamsObject = (modalType: ContentType, configs: ModalConfig[], user?: User, current?: ContentType): Modal => {
   const modalConfig = configs.find(({type}) => type === modalType);
   
   if (!modalConfig) {
     throw new Error(`Missing config for ${modalType}`)
   }
 
-  const viewConfig = modalConfig.views?.find(({view}) => view === currentView);
+  const view = modalConfig.views?.find(view => view === current);
+  const viewConfig = configs.find(({type}) => type === modalType);
 
-  if (currentView && !viewConfig) {
-    throw new Error(`Missing config for ${modalType}, view ${currentView}`);
+  if (current && !viewConfig) {
+    throw new Error(`Missing config for ${modalType}, view ${current}`);
   }
 
   const checkConfigPermission = !modalConfig.permission;
   const checkModalPermission = user?.permissions?.some(permission => permission === modalConfig.permission)
-  const checkCurrentView = !currentView;
-  const checkDefaultView = modalConfig.views && modalConfig.views[0].view === currentView;
-  const checkViewPermission = checkCurrentView || checkDefaultView || user?.permissions?.some(permission => permission === viewConfig?.permission)
+  const checkCurrentView = !current;
+  const checkViewPermission = checkCurrentView || user?.permissions?.some(permission => permission === viewConfig?.permission)
   
   const allowAccess = checkConfigPermission || (checkModalPermission && checkViewPermission);
 
@@ -27,8 +27,8 @@ export const getParamsObject = (modalType: ModalType, configs: ModalConfig[], us
     throw new Error(`Missing permissions for ${modalType}`)
   }
 
-  const viewTitle = currentView && modalConfig.views ? modalConfig.views.find(({view}) => view === currentView)?.title : undefined;
-  const defaultTitle = modalConfig.views ? modalConfig.views[0].title : modalConfig.title;
+  const viewTitle = current && viewConfig?.title;
+  const defaultTitle = modalConfig.title;
 
-  return { ...modalConfig, currentView, title: viewTitle || defaultTitle };
+  return { ...modalConfig, currentView: current, title:  viewTitle || defaultTitle };
 }

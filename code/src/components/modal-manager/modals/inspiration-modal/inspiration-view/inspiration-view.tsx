@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Section, SectionRow } from './inspiration-view.styled';
 import { useModalContext } from '@/contexts/use-modal';
-import { ViewForInspiration } from '@/data/enums';
 import {
   AddMoodboardsButton,
   AddResourcesButton,
@@ -9,10 +8,6 @@ import {
 
 export const InspirationView: FC = () => {
   const { currentView } = useModalContext();
-
-  const isInspirationViewOpen = currentView === ViewForInspiration.Inspiration;
-
-  if (!isInspirationViewOpen) return null;
 
   return (
     <Section>

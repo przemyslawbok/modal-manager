@@ -1,7 +1,6 @@
-import { ModalType } from './modal-type';
+import { ContentType } from './content-type';
 import { ModalVariant } from './modal-variant';
-import { ViewForInspiration } from './view-for-inspiration';
 import { Roles } from './roles';
-import { Permissions } from './permissions'
+import { Permission } from './permission'
 
-export { ModalType, ModalVariant, ViewForInspiration, Roles, Permissions }
+export { ContentType, ModalVariant, Roles, Permission }

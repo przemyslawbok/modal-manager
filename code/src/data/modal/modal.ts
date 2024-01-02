@@ -1,10 +1,9 @@
-import { ModalType, ModalVariant } from '../enums';
-import { View } from './view';
+import { ContentType, ModalVariant } from '../enums';
 
 export interface Modal {
   title?: string;
-  type?: ModalType;
+  type?: ContentType;
   variant?: ModalVariant;
-  currentView?: string;
-  views?: View[];
+  views?: ContentType[];
+  currentView?: ContentType;
 }

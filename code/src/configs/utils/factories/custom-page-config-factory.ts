@@ -1,32 +1,24 @@
 import { PageConfigFactory } from '@/contexts/use-modal';
-import { ModalType, ModalVariant, Permissions, ViewForInspiration } from '@/data/enums';
+import { ContentType, ModalVariant, Permission } from '@/data/enums';
 import { CustomPageConfig } from '@/data/types';
 
 export const CustomPageConfigFactory: PageConfigFactory<
-typeof ModalType, 
+typeof ContentType, 
 typeof ModalVariant, 
-typeof Permissions, 
-typeof ViewForInspiration | undefined, 
+typeof Permission, 
 CustomPageConfig
-> = (modalTypes, modalsConfigs, modalsWithViewsConfigs) => {
+> = (contentTypes, modalsConfigs) => {
   const result: CustomPageConfig = {
-    modals: [],
-    modalsWithViews: []
+    contents: [],
   }
 
-  modalTypes.forEach(modalType => {
-    const modalConfig = modalsConfigs.find(modalConfig => modalConfig.type === modalType)
-    const modalWithViewsConfig = modalsWithViewsConfigs.find(modalConfig => modalConfig.type === modalType)
+  contentTypes.forEach(contentType => {
+    const modalConfig = modalsConfigs.find(modalConfig => modalConfig.type === contentType)
 
-    if (!modalConfig && !modalWithViewsConfig) throw new Error(`Missing config for modal type: ${modalType}`)
-    if (modalConfig && modalWithViewsConfig) throw new Error(`Multiple configs for modal type: ${modalType}`)
+    if (!modalConfig) throw new Error(`Missing config for modal type: ${contentType}`)
 
     if (modalConfig) {
-      result.modals.push({ ...modalConfig })
-    }
-
-    if (modalWithViewsConfig) {
-      result.modalsWithViews.push({ ...modalWithViewsConfig })
+      result.contents.push({ ...modalConfig })
     }
   })
 

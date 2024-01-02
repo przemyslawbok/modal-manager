@@ -3,13 +3,14 @@ import { EnumKeys, EnumObject, EnumValues } from './common';
 import { VariantConfig } from './variant-config';
 
 export type ModalConfig<
-  ModalType extends EnumObject, 
+  ContentType extends EnumObject, 
   Variant extends EnumObject, 
-  Permissions extends EnumObject
+  Permission extends EnumObject
 > = {
-  type: EnumKeys<ModalType> | EnumValues<ModalType>;
+  type: EnumKeys<ContentType> | EnumValues<ContentType>;
   variant: VariantConfig<Variant>;
   title?: string;
-  permission?: EnumKeys<Permissions> | EnumValues<Permissions>;
+  permission?: EnumKeys<Permission> | EnumValues<Permission>;
+  views?: EnumKeys<ContentType> | EnumValues<ContentType>[];
   modal?: ComponentType<any>
 }

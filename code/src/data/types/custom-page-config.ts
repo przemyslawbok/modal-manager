@@ -1,4 +1,4 @@
 import { PageConfig } from '@/contexts/use-modal';
-import { ModalType, ModalVariant, Permissions, ViewForInspiration } from '../enums';
+import { ContentType, ModalVariant, Permission } from '../enums';
 
-export type CustomPageConfig = PageConfig<typeof ModalType, typeof ModalVariant, typeof Permissions, typeof ViewForInspiration | undefined>;
+export type CustomPageConfig = PageConfig<typeof ContentType, typeof ModalVariant, typeof Permission>;

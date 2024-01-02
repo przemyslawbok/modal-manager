@@ -1,20 +1,15 @@
-import { ModalType, ModalVariant, ViewForInspiration, Permissions } from '@/data/enums';
-import { CustomModalConfig, CustomModalWithViewsConfig, CustomPageConfig, CustomVariantConfig, CustomViewConfig } from '@/data/types';
-import { CustomModalConfigFactory, CustomModalWithViewsConfigFactory, CustomPageConfigFactory, CustomVariantConfigFactory, CustomViewConfigFactory } from './utils';
+import { ContentType, ModalVariant, Permission } from '@/data/enums';
+import { CustomModalConfig, CustomPageConfig } from '@/data/types';
+import { CustomModalConfigFactory, CustomPageConfigFactory, } from './utils';
 
-export const variantConfig: CustomVariantConfig = CustomVariantConfigFactory(ModalVariant.Centered);
+const editModalConfig: CustomModalConfig = CustomModalConfigFactory(ContentType.Edit, ModalVariant.Centered, "Edit Modal");
 
-const editModalConfig: CustomModalConfig = CustomModalConfigFactory(ModalType.Edit, ModalVariant.Centered, "Edit Modal");
+const developmentsModalConfig: CustomModalConfig = CustomModalConfigFactory(ContentType.Developments, ModalVariant.Bottom, "Developments Modal", Permission.ViewDevelopments);
+const inspirationModalConfig: CustomModalConfig = CustomModalConfigFactory(ContentType.Inspiration, ModalVariant.Right, "Inspiration Modal", Permission.ViewInspiration);
+const moodboardsViewConfig: CustomModalConfig = CustomModalConfigFactory(ContentType.MoodboardsView, ModalVariant.Right, "Moodboards View", Permission.AddMoodboards);
+const resourcesViewConfig: CustomModalConfig = CustomModalConfigFactory(ContentType.ResourcesView, ModalVariant.Right, "Resources View", Permission.AddResources);
 
-const developmentsModalConfig: CustomModalConfig = CustomModalConfigFactory(ModalType.Developments, ModalVariant.Bottom, "Developments Modal", Permissions.ViewDevelopments);
+export const modalsConfigs: CustomModalConfig[] = [editModalConfig, developmentsModalConfig, inspirationModalConfig, moodboardsViewConfig, resourcesViewConfig];
 
-const inspirationViewConfig: CustomViewConfig = CustomViewConfigFactory("Inspiration Modal", ViewForInspiration.Inspiration, Permissions.ViewInspiration);
-const addMoodboardsViewConfig: CustomViewConfig = CustomViewConfigFactory("Add Moodboards Modal", ViewForInspiration.AddMoodboards, Permissions.AddMoodboards);
-const addResourcesViewConfig: CustomViewConfig = CustomViewConfigFactory("Add Resources Modal", ViewForInspiration.AddResources, Permissions.AddResources);
-const inspirationModalConfig: CustomModalWithViewsConfig = CustomModalWithViewsConfigFactory(ModalType.Inspiration, ModalVariant.Right, [inspirationViewConfig, addMoodboardsViewConfig, addResourcesViewConfig])
-
-export const modalsConfigs: CustomModalConfig[] = [editModalConfig, developmentsModalConfig];
-export const modalsWithViewsConfigs: CustomModalWithViewsConfig[] = [inspirationModalConfig];
-
-export const pageConfig: CustomPageConfig = CustomPageConfigFactory([ModalType.Edit, ModalType.Developments, ModalType.Inspiration], modalsConfigs, modalsWithViewsConfigs);
-export const restrictedPageConfig: CustomPageConfig = CustomPageConfigFactory([ModalType.Developments, ModalType.Inspiration], modalsConfigs, modalsWithViewsConfigs);
+export const pageConfig: CustomPageConfig = CustomPageConfigFactory([ContentType.Edit, ContentType.Developments, ContentType.Inspiration], modalsConfigs);
+export const restrictedPageConfig: CustomPageConfig = CustomPageConfigFactory([ContentType.Developments, ContentType.Inspiration], modalsConfigs);

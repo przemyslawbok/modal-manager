@@ -1,4 +1,4 @@
 import { ModalConfig } from '@/contexts/use-modal';
-import { ModalType, ModalVariant, Permissions } from '../enums';
+import {  ContentType, ModalVariant, Permission } from '../enums';
 
-export type CustomModalConfig = ModalConfig<typeof ModalType, typeof ModalVariant, typeof Permissions>;
+export type CustomModalConfig = ModalConfig<typeof ContentType, typeof ModalVariant, typeof Permission>;

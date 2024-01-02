@@ -6,7 +6,7 @@ import React, {
   Fragment,
 } from 'react';
 import { getParamsObject } from './utils/get-params-object';
-import { ViewForInspiration, ModalType, ModalVariant } from '@/data/enums';
+import { ContentType, ModalVariant } from '@/data/enums';
 import { Modal, ModalConfig } from '@/data/modal';
 import { reducer } from './utils/reducer';
 import { User } from '@/data/user';
@@ -42,27 +42,27 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(reducer, {
-    modal: {},
+    current: {},
   });
 
-  const { title, type, variant, currentView, views } = state.modal;
+  const { title, type, variant, currentView, views } = state.current;
 
-  const isEditOpen = type === ModalType.Edit;
-  const isDevelopmentsOpen = type === ModalType.Developments;
-  const isInspirationOpen = type === ModalType.Inspiration;
+  const isEditOpen = type === ContentType.Edit;
+  const isDevelopmentsOpen = type === ContentType.Developments;
+  const isInspirationOpen = type === ContentType.Inspiration;
 
   const showEdit = () => {
-    dispatch(getParamsObject(ModalType.Edit, configs, user));
+    dispatch(getParamsObject(ContentType.Edit, configs, user));
   };
 
   const showDevelopments = () => {
-    dispatch(getParamsObject(ModalType.Developments, configs, user));
+    dispatch(getParamsObject(ContentType.Developments, configs, user));
   };
 
   const showInspiration = () => {
     dispatch(
       getParamsObject(
-        ModalType.Inspiration,
+        ContentType.Inspiration,
         configs,
         user,
         ViewForInspiration.Inspiration
@@ -73,7 +73,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   const showAddResources = () => {
     dispatch(
       getParamsObject(
-        ModalType.Inspiration,
+        ContentType.Inspiration,
         configs,
         user,
         ViewForInspiration.AddResources
@@ -84,7 +84,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   const showAddMoodboards = () => {
     dispatch(
       getParamsObject(
-        ModalType.Inspiration,
+        ContentType.Inspiration,
         configs,
         user,
         ViewForInspiration.AddMoodboards
