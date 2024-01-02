@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import { EnumKeys, EnumObject, EnumValues } from './common';
 import { VariantConfig } from './variant-config';
 
-export type ModalConfig<
+export type ContentConfig<
   ContentType extends EnumObject, 
   Variant extends EnumObject, 
   Permission extends EnumObject
@@ -12,5 +12,5 @@ export type ModalConfig<
   title?: string;
   permission?: EnumKeys<Permission> | EnumValues<Permission>;
   views?: EnumKeys<ContentType> | EnumValues<ContentType>[];
-  modal?: ComponentType<any>
+  content?: ComponentType<any>
 }

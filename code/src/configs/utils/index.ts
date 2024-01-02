@@ -1,11 +1,11 @@
 import { 
-  CustomModalConfigFactory, 
+  CustomContentConfigFactory, 
   CustomVariantConfigFactory, 
   CustomPageConfigFactory 
 } from './factories';
 
 export { 
-  CustomModalConfigFactory, 
+  CustomContentConfigFactory, 
   CustomVariantConfigFactory, 
   CustomPageConfigFactory
 }

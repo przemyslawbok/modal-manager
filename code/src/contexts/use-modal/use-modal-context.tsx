@@ -65,7 +65,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
         ContentType.Inspiration,
         configs,
         user,
-        ViewForInspiration.Inspiration
+        ContentType.Inspiration
       )
     );
   };
@@ -76,7 +76,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
         ContentType.Inspiration,
         configs,
         user,
-        ViewForInspiration.AddResources
+        ContentType.ResourcesView
       )
     );
   };
@@ -87,13 +87,13 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
         ContentType.Inspiration,
         configs,
         user,
-        ViewForInspiration.AddMoodboards
+        ContentType.MoodboardsView
       )
     );
   };
 
   const showInitialView = () => {
-    const initialView = views ? views[0].view : undefined;
+    const initialView = views ? views[0] : undefined;
     if (type && initialView)
       dispatch(getParamsObject(type, configs, user, initialView));
   };
@@ -105,9 +105,9 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   const getCurrentView = () => {
     //TODO: add error handling when set parameters are not in config
     const config = configs.find((config) => config.type === type);
-    const view = config?.views?.find((view) => view.view === currentView);
+    const view = config?.views?.find((view) => view === currentView);
 
-    return view?.view;
+    return view;
   };
 
   const getModalsFromConfigs = () => {
@@ -119,7 +119,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({
   };
 
   const isInitialViewCurrent = () => {
-    const initialView = views ? views[0].view : undefined;
+    const initialView = views ? views[0] : undefined;
     return initialView !== currentView;
   };
 
